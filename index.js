@@ -1,20 +1,15 @@
-const Eris = require("eris");
+const { Client, GatewayIntentBits } = require('discord.js');
 
-// Ersetze 'YOUR_BOT_TOKEN' mit deinem Bot-Token
-const bot = new Eris("token");
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-bot.on("ready", () => {
-    console.log(`Logged in as ${bot.user.username}`);
-
-    // Setzt den Status auf "DND" und zeigt "Currently offline" als benutzerdefinierten Status an
-    bot.editStatus("dnd", { 
-        name: "Currently offline", 
-        type: 4 // 4 = Benutzerdefinierter Status
+client.once('ready', () => {
+    console.log(`Logged in as ${client.user.tag}`);
+    
+    // Setzt den Status auf "DND" (roter Punkt) und zeigt den benutzerdefinierten Status an
+    client.user.setPresence({
+        activities: [{ name: 'Currently offline', type: 4 }], // 4 = Benutzerdefinierter Status
+        status: 'dnd', // "Bitte nicht stören" (roter Punkt)
     });
 });
 
-bot.on("error", (err) => {
-    console.error(err);
-});
-
-bot.connect(); // Bot verbindet sich mit Discord
+client.login('token');
