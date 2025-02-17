@@ -1,15 +1,19 @@
-const { Client, GatewayIntentBits } = require('discord.js');
+const Eris = require("eris");
+const keep_alive = require('./keep_alive.js');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const bot = new Eris(process.env.token);
 
-client.once('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`);
+bot.on("ready", () => {
+    console.log("Bot ist online!");
     
-    // Setzt den Status auf "DND" (roter Punkt) und zeigt den benutzerdefinierten Status an
-    client.user.setPresence({
-        activities: [{ name: 'Currently offline', type: 4 }], // 4 = Benutzerdefinierter Status
-        status: 'dnd', // "Bitte nicht stören" (roter Punkt)
+    // Setzt den Status auf "dnd" mit benutzerdefiniertem Status-Text
+    bot.editStatus("dnd", {
+        status: "Currently offline" // Benutzerdefinierter Status-Text
     });
 });
 
-client.login('token');
+bot.on("error", (err) => {
+    console.error(err);
+});
+
+bot.connect();
