@@ -6,7 +6,7 @@ const bot = new Eris(process.env.token);
 
 bot.on("ready", () => {
     console.log("Bot ist online!");
-    bot.editStatus("idle", {
+    bot.editStatus("dnd", {
         name: "Currently offline",
         type: 3 // 0 = Playing, 1 = Streaming, 2 = Listening, 3 = Watching
     });
