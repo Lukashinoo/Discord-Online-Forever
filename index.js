@@ -1,19 +1,19 @@
 const Eris = require("eris");
 const keep_alive = require('./keep_alive.js');
 
-// Replace TOKEN with your bot account's token
 const bot = new Eris(process.env.token);
 
 bot.on("ready", () => {
     console.log("Bot ist online!");
+    
+    // Setzt den Status auf "dnd" mit benutzerdefiniertem Status-Text
     bot.editStatus("dnd", {
-        name: "Currently offline",
-        type: 3 // 0 = Playing, 1 = Streaming, 2 = Listening, 3 = Watching
+        status: "Currently offline" // Benutzerdefinierter Status-Text
     });
 });
 
 bot.on("error", (err) => {
-    console.error(err); // or your preferred logger
+    console.error(err);
 });
 
-bot.connect(); // Get the bot to connect to Discord
+bot.connect();
