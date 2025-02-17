@@ -1,7 +1,7 @@
 const Eris = require("eris");
 
 // Ersetze 'YOUR_BOT_TOKEN' mit deinem Bot-Token
-const bot = new Eris("YOUR_BOT_TOKEN");
+const bot = new Eris("token");
 
 bot.on("ready", () => {
     console.log(`Logged in as ${bot.user.username}`);
