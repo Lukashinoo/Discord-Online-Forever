@@ -8,7 +8,8 @@ bot.on("ready", () => {
     
     // Setzt den Status auf "dnd" mit benutzerdefiniertem Status-Text
     bot.editStatus("dnd", {
-        status: "Currently offline" // Benutzerdefinierter Status-Text
+        name: "Currently offline", // Benutzerdefinierter Status-Text
+        type: 2 // 0 = spielt, 1 = streamt, 2 = hört zu, 3 = schaut, 5 = konkurriert
     });
 });
 
